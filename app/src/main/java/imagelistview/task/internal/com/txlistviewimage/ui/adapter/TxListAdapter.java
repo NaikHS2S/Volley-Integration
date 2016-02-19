@@ -3,6 +3,7 @@ package imagelistview.task.internal.com.txlistviewimage.ui.adapter;
 import imagelistview.task.internal.com.txlistviewimage.R;
 import manager.request_queue_manager.TxNetworkManager;
 import manager.response.SingleUserInfo;
+import manager.utils.TxStringUtils;
 
 import java.util.List;
 
@@ -53,14 +54,18 @@ public class TxListAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.list_row, null);
 
-        if (imageLoader == null)
+        if (imageLoader == null) {
             imageLoader = TxNetworkManager.getInstance().getImageLoader();
+        }
 
         SingleUserInfo userInformation = userInfo.get(position);
 
         NetworkImageView thumbNailNetworkImage = (NetworkImageView) convertView
                 .findViewById(R.id.networkImage);
-        if (isaNullImageUrl(userInformation.getImageHref())) {
+
+        TxStringUtils txStringUtils = new TxStringUtils();
+
+        if (txStringUtils.isStringDataAValid(userInformation.getImageHref())) {
 
             thumbNailNetworkImage.setImageUrl(userInformation.getImageHref(), imageLoader);
         } else {
@@ -74,16 +79,15 @@ public class TxListAdapter extends BaseAdapter {
         TextView title = (TextView) convertView.findViewById(R.id.title);
         TextView description = (TextView) convertView.findViewById(R.id.description);
 
-        title.setText(userInformation.getTitle());
+        if (txStringUtils.isStringDataAValid(String.valueOf(userInformation.getTitle()))) {
+            title.setText(userInformation.getTitle());
+        }
 
-        description.setText(String.valueOf(userInformation.getDescription()));
-
+        if (txStringUtils.isStringDataAValid(String.valueOf(userInformation.getDescription()))) {
+            description.setText(String.valueOf(userInformation.getDescription()));
+        }
 
         return convertView;
-    }
-
-    private boolean isaNullImageUrl(String url) {
-        return url != null && !url.equalsIgnoreCase("null") && !url.trim().equalsIgnoreCase("");
     }
 
 

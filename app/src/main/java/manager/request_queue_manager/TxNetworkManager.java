@@ -30,6 +30,8 @@ public class TxNetworkManager extends Application {
         return mInstance;
     }
 
+    // Maintaining Request Queue for Volly.
+
     public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -47,6 +49,7 @@ public class TxNetworkManager extends Application {
         return this.mImageLoader;
     }
 
+    // Adding Request to predefined Queue with tag so we could able to cancel using same string key.
     public <T> void addToRequestQueue(Request<T> req, String tag) {
         // set the default tag if tag is empty
         req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);

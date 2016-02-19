@@ -22,6 +22,7 @@ import imagelistview.task.internal.com.txlistviewimage.ui.adapter.TxListAdapter;
 import manager.request_queue_manager.TxNetworkManager;
 import manager.response.SingleUserInfo;
 import manager.response.UserContentMain;
+import manager.utils.TxStringUtils;
 
 import org.json.JSONObject;
 
@@ -132,7 +133,11 @@ public class TxMainActivity extends AppCompatActivity {
     }
 
     private void updateTitleAndListData(UserContentMain userContentMain) {
-        getSupportActionBar().setTitle("" + userContentMain.getTitle());
+
+        if (new TxStringUtils().isStringDataAValid(userContentMain.getTitle())) {
+            getSupportActionBar().setTitle(userContentMain.getTitle());
+        }
+
         userList = userContentMain.getRows();
 
         adapter = new TxListAdapter(this, userContentMain.getRows());
