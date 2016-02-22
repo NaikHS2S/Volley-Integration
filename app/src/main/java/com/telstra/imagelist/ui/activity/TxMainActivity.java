@@ -31,7 +31,7 @@ import java.util.List;
 
 public class TxMainActivity extends AppCompatActivity {
 
-    public static final String HTTPS_DL_DROPBOXUSERCONTENT_COM_U_746330_FACTS_JSON = "https://dl.dropboxusercontent.com/u/746330/facts.json";
+    public static final String USER_CONTENT_URL = "https://dl.dropboxusercontent.com/u/746330/facts.json";
     private final String TAG = TxMainActivity.class.getSimpleName();
     private final String TAG_VOLLY_REQUEST = "my_own_tax";
     private SwipeRefreshLayout mSwipeRefreshLayout = null;
@@ -90,7 +90,7 @@ public class TxMainActivity extends AppCompatActivity {
                 .setAction("Action", null).show();
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                HTTPS_DL_DROPBOXUSERCONTENT_COM_U_746330_FACTS_JSON, null,
+                USER_CONTENT_URL, null,
                 new Response.Listener<JSONObject>() {
 
                     @Override
