@@ -24,6 +24,7 @@ public class TxListAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private List<SingleUserInfo> userInfo;
     ImageLoader imageLoader = TxNetworkManager.getInstance().getImageLoader();
+    TxStringUtils txStringUtils = new TxStringUtils();
 
     public TxListAdapter(Activity activity, List<SingleUserInfo> userInfo) {
         this.activity = activity;
@@ -79,24 +80,31 @@ public class TxListAdapter extends BaseAdapter {
 
         SingleUserInfo userInformation = userInfo.get(position);
 
-        TxStringUtils txStringUtils = new TxStringUtils();
 
-        if (txStringUtils.isStringDataAValid(userInformation.getImageHref())) {
+
+        if (isStringDataAValid(userInformation.getImageHref())) {
 
             holder.thumbNailNetworkImage.setImageUrl(userInformation.getImageHref(), imageLoader);
+            if (isStringDataAValid(String.valueOf(userInformation.getDescription()))) {
+                holder.thumbNailNetworkImage.setContentDescription(String.valueOf(userInformation.getDescription()));
+            }
         } else {
             holder.thumbNailImage.setVisibility(View.VISIBLE);
             holder.thumbNailNetworkImage.setVisibility(View.GONE);
         }
 
-        if (txStringUtils.isStringDataAValid(String.valueOf(userInformation.getTitle()))) {
+        if (isStringDataAValid(String.valueOf(userInformation.getTitle()))) {
             holder.title.setText(userInformation.getTitle());
         }
 
-        if (txStringUtils.isStringDataAValid(String.valueOf(userInformation.getDescription()))) {
+        if (isStringDataAValid(String.valueOf(userInformation.getDescription()))) {
             holder.description.setText(String.valueOf(userInformation.getDescription()));
         }
         return convertView;
+    }
+
+    private boolean isStringDataAValid(String stringValue) {
+        return txStringUtils.isStringDataAValid(stringValue);
     }
 
     private class ViewHolder {
