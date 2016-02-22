@@ -48,47 +48,62 @@ public class TxListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        if (inflater == null)
+        ViewHolder holder;
+
+        if (inflater == null) {
             inflater = (LayoutInflater) activity
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        if (convertView == null)
-            convertView = inflater.inflate(R.layout.list_row, null);
+        }
 
         if (imageLoader == null) {
             imageLoader = TxNetworkManager.getInstance().getImageLoader();
         }
 
-        SingleUserInfo userInformation = userInfo.get(position);
+        if (convertView == null) {
+            holder = new ViewHolder();
 
-        NetworkImageView thumbNailNetworkImage = (NetworkImageView) convertView
-                .findViewById(R.id.networkImage);
+            convertView = inflater.inflate(R.layout.list_row, parent, false);
+
+            holder.title = (TextView) convertView.findViewById(R.id.title);
+            holder.description = (TextView) convertView.findViewById(R.id.description);
+            holder.thumbNailNetworkImage = (NetworkImageView) convertView
+                    .findViewById(R.id.networkImage);
+            holder.thumbNailImage = (ImageView) convertView
+                    .findViewById(R.id.image);
+
+            convertView.setTag(holder);
+        } else {
+
+            holder = (ViewHolder)convertView.getTag();
+        }
+
+        SingleUserInfo userInformation = userInfo.get(position);
 
         TxStringUtils txStringUtils = new TxStringUtils();
 
         if (txStringUtils.isStringDataAValid(userInformation.getImageHref())) {
 
-            thumbNailNetworkImage.setImageUrl(userInformation.getImageHref(), imageLoader);
+            holder.thumbNailNetworkImage.setImageUrl(userInformation.getImageHref(), imageLoader);
         } else {
-            ImageView thumbNailImage = (ImageView) convertView
-                    .findViewById(R.id.image);
-            thumbNailImage.setVisibility(View.VISIBLE);
-            thumbNailNetworkImage.setVisibility(View.GONE);
+            holder.thumbNailImage.setVisibility(View.VISIBLE);
+            holder.thumbNailNetworkImage.setVisibility(View.GONE);
         }
 
-
-        TextView title = (TextView) convertView.findViewById(R.id.title);
-        TextView description = (TextView) convertView.findViewById(R.id.description);
-
         if (txStringUtils.isStringDataAValid(String.valueOf(userInformation.getTitle()))) {
-            title.setText(userInformation.getTitle());
+            holder.title.setText(userInformation.getTitle());
         }
 
         if (txStringUtils.isStringDataAValid(String.valueOf(userInformation.getDescription()))) {
-            description.setText(String.valueOf(userInformation.getDescription()));
+            holder.description.setText(String.valueOf(userInformation.getDescription()));
         }
-
         return convertView;
     }
 
+    private class ViewHolder {
+        TextView title;
+        TextView description;
+        ImageView thumbNailImage;
+        NetworkImageView thumbNailNetworkImage;
+    }
 
 }
