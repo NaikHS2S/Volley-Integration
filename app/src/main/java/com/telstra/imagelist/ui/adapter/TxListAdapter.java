@@ -33,6 +33,8 @@ public class TxListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+        if(userInfo == null)
+            return 0;
         return userInfo.size();
     }
 
@@ -69,8 +71,6 @@ public class TxListAdapter extends BaseAdapter {
             holder.description = (TextView) convertView.findViewById(R.id.description);
             holder.thumbNailNetworkImage = (NetworkImageView) convertView
                     .findViewById(R.id.networkImage);
-            holder.thumbNailImage = (ImageView) convertView
-                    .findViewById(R.id.image);
 
             convertView.setTag(holder);
         } else {
@@ -78,9 +78,9 @@ public class TxListAdapter extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();
         }
 
-        SingleUserInfo userInformation = userInfo.get(position);
+       final SingleUserInfo userInformation = userInfo.get(position);
 
-
+        holder.thumbNailNetworkImage.setVisibility(View.VISIBLE);
 
         if (isStringDataAValid(userInformation.getImageHref())) {
 
@@ -88,8 +88,11 @@ public class TxListAdapter extends BaseAdapter {
             if (isStringDataAValid(String.valueOf(userInformation.getDescription()))) {
                 holder.thumbNailNetworkImage.setContentDescription(String.valueOf(userInformation.getDescription()));
             }
-        } else {
-            holder.thumbNailImage.setVisibility(View.VISIBLE);
+
+            holder.thumbNailNetworkImage.setDefaultImageResId(R.mipmap.ic_launcher);
+            holder.thumbNailNetworkImage.setErrorImageResId(R.mipmap.ic_launcher);
+        }else{
+
             holder.thumbNailNetworkImage.setVisibility(View.GONE);
         }
 
@@ -99,6 +102,8 @@ public class TxListAdapter extends BaseAdapter {
 
         if (isStringDataAValid(String.valueOf(userInformation.getDescription()))) {
             holder.description.setText(String.valueOf(userInformation.getDescription()));
+        }else{
+            holder.description.setText("");
         }
         return convertView;
     }
@@ -110,7 +115,6 @@ public class TxListAdapter extends BaseAdapter {
     private class ViewHolder {
         TextView title;
         TextView description;
-        ImageView thumbNailImage;
         NetworkImageView thumbNailNetworkImage;
     }
 

@@ -61,6 +61,9 @@ public class TxMainActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.list);
 
+        adapter = new TxListAdapter(this, userList);
+        listView.setAdapter(adapter);
+
         progressBar=(ProgressBar)findViewById(R.id.progressView);
 
         //Initialize swipe to refresh view
@@ -138,21 +141,19 @@ public class TxMainActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(userContentMain.getTitle());
         }
 
-        userList = validateLIst(userContentMain.getRows(),txStringUtil);
-
-        adapter = new TxListAdapter(this, userContentMain.getRows());
-        listView.setAdapter(adapter);
-        //adapter.notifyDataSetChanged();
+         validateLIst(userContentMain.getRows(),txStringUtil);
+        adapter.notifyDataSetChanged();
     }
 
-    private ArrayList<SingleUserInfo> validateLIst(ArrayList<SingleUserInfo> userList, TxStringUtils txStringUtils) {
+    private void validateLIst(ArrayList<SingleUserInfo> userList, TxStringUtils txStringUtils) {
         for (Iterator<SingleUserInfo> it = userList.iterator(); it.hasNext(); ) {
             SingleUserInfo singleUserInfo = it.next();
             if (!txStringUtils.isStringDataAValid(singleUserInfo.getTitle()) && !txStringUtils.isStringDataAValid(singleUserInfo.getDescription())) {
                 it.remove();
             }
         }
-        return userList;
+        this.userList.clear();
+        this.userList.addAll(userList);
     }
 
     @Override
