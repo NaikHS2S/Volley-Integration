@@ -3,34 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="${relativePackage}.${activityClass}" >
+    tools:context="${relativePackage}.${activityClass}">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:minHeight="?attr/actionBarSize"
-        android:background="#2196F3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </android.support.v7.widget.Toolbar>
+        android:layout_height="wrap_content"
+        android:background="#2196F3"
+        android:minHeight="?attr/actionBarSize"></android.support.v7.widget.Toolbar>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_below="@+id/toolbar"
-        android:layout_height="match_parent">
-
-<!--    <android.support.v7.widget.RecyclerView
-        android:id="@+id/my_recycler_view"
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-        android:scrollbars="vertical" />-->
+        android:layout_below="@+id/toolbar">
 
         <ListView
             android:id="@+id/list"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
@@ -38,21 +29,22 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/fab_margin"
         android:layout_marginBottom="12dp"
         android:layout_marginRight="12dp"
         android:elevation="2dp"
-        android:src="@android:drawable/ic_menu_rotate"
-        />
+        android:src="@android:drawable/ic_menu_rotate" />
 
-    <ProgressBar android:id="@+id/progressView"
-        android:layout_height="wrap_content" android:layout_width="wrap_content"
-
+    <ProgressBar
+        android:id="@+id/progressView"
         style="@android:style/Widget.ProgressBar.Small"
-        android:visibility="gone" android:layout_centerInParent="true"
-        />
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
 </RelativeLayout>
 
