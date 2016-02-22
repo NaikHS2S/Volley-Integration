@@ -26,6 +26,7 @@ import com.telstra.imagelist.common.util.TxStringUtils;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -132,16 +133,26 @@ public class TxMainActivity extends AppCompatActivity {
     }
 
     private void updateTitleAndListData(UserContentMain userContentMain) {
-
-        if (new TxStringUtils().isStringDataAValid(userContentMain.getTitle())) {
+        TxStringUtils txStringUtil = new TxStringUtils();
+        if (txStringUtil.isStringDataAValid(userContentMain.getTitle())) {
             getSupportActionBar().setTitle(userContentMain.getTitle());
         }
 
-        userList = userContentMain.getRows();
+        userList = validateLIst(userContentMain.getRows(),txStringUtil);
 
         adapter = new TxListAdapter(this, userContentMain.getRows());
         listView.setAdapter(adapter);
         //adapter.notifyDataSetChanged();
+    }
+
+    private ArrayList<SingleUserInfo> validateLIst(ArrayList<SingleUserInfo> userList, TxStringUtils txStringUtils) {
+        for (Iterator<SingleUserInfo> it = userList.iterator(); it.hasNext(); ) {
+            SingleUserInfo singleUserInfo = it.next();
+            if (!txStringUtils.isStringDataAValid(singleUserInfo.getTitle()) && !txStringUtils.isStringDataAValid(singleUserInfo.getDescription())) {
+                it.remove();
+            }
+        }
+        return userList;
     }
 
     @Override
