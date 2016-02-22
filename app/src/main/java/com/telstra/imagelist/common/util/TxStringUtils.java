@@ -1,4 +1,4 @@
-package manager.utils;
+package com.telstra.imagelist.common.util;
 
 /**
  * Created by computer on 2/18/2016.
