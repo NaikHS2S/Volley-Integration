@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="4dp"
-    android:paddingLeft="8dp"
-    android:paddingRight="16dp"
-    android:paddingTop="4dp">
+    android:paddingBottom="@dimen/four_dp_margin"
+    android:paddingLeft="@dimen/eight_dp_margin"
+    android:paddingRight="@dimen/fab_margin"
+    android:paddingTop="@dimen/four_dp_margin">
 
     <TextView
         android:id="@+id/title"
@@ -23,7 +23,7 @@
 
         <TextView
             android:id="@+id/description"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp_margin"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_marginTop="1dip"
@@ -31,11 +31,11 @@
 
             <com.android.volley.toolbox.NetworkImageView
                 android:id="@+id/networkImage"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero_dp_margin"
                 android:layout_height="140dp"
                 android:scaleType="fitEnd"
                 android:layout_gravity="right|bottom"
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="@dimen/four_dp_margin"
                 android:layout_weight="0.7"
                 />
 
