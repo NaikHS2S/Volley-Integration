@@ -81,6 +81,15 @@ public class TxMainActivity extends AppCompatActivity {
         makeJsonObjReq();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(TxMainActivity.this.isFinishing()){
+            // Cancelling request
+            TxNetworkManager.getInstance().getRequestQueue().cancelAll(TAG_REQUEST);
+        }
+    }
+
     private void makeJsonObjReq() {
 
         if (!mSwipeRefreshLayout.isRefreshing()) {
@@ -153,14 +162,5 @@ public class TxMainActivity extends AppCompatActivity {
         this.userList.addAll(userList);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if(TxMainActivity.this.isFinishing()){
-            // Cancelling request
-             TxNetworkManager.getInstance().getRequestQueue().cancelAll(TAG_REQUEST);
-        }
-
-    }
 }
 
