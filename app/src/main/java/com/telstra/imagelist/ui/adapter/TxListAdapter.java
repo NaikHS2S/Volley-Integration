@@ -13,18 +13,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
 public class TxListAdapter extends BaseAdapter {
-    private Activity activity;
+    private final Activity activity;
     private LayoutInflater inflater;
-    private List<SingleUserInfo> userInfo;
-    ImageLoader imageLoader = TxNetworkManager.getInstance().getImageLoader();
-    TxStringUtils txStringUtils = new TxStringUtils();
+    private final List<SingleUserInfo> userInfo;
+    private ImageLoader imageLoader = TxNetworkManager.getInstance().getImageLoader();
+    private final TxStringUtils txStringUtils = new TxStringUtils();
 
     public TxListAdapter(Activity activity, List<SingleUserInfo> userInfo) {
         this.activity = activity;

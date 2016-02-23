@@ -5,7 +5,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -32,13 +31,13 @@ import java.util.List;
 
 public class TxMainActivity extends AppCompatActivity {
 
-    public static final String USER_CONTENT_URL = "https://dl.dropboxusercontent.com/u/746330/facts.json";
+    private static final String USER_CONTENT_URL = "https://dl.dropboxusercontent.com/u/746330/facts.json";
     private final String TAG = TxMainActivity.class.getSimpleName();
-    private final String TAG_VOLLY_REQUEST = "my_own_tax";
+    private final String TAG_REQUEST = "my_own_tax";
     private SwipeRefreshLayout mSwipeRefreshLayout = null;
 
     private ProgressBar progressBar;
-    private List<SingleUserInfo> userList = new ArrayList<SingleUserInfo>();
+    private final List<SingleUserInfo> userList = new ArrayList<SingleUserInfo>();
     private ListView listView;
     private TxListAdapter adapter;
 
@@ -129,13 +128,13 @@ public class TxMainActivity extends AppCompatActivity {
 
         // Adding request to request queue
         TxNetworkManager.getInstance().addToRequestQueue(jsonObjReq,
-                TAG_VOLLY_REQUEST);
+                TAG_REQUEST);
 
     }
 
     private void updateTitleAndListData(UserContentMain userContentMain) {
         TxStringUtils txStringUtil = new TxStringUtils();
-        if (txStringUtil.isStringDataAValid(userContentMain.getTitle())) {
+        if (getSupportActionBar() != null && txStringUtil.isStringDataAValid(userContentMain.getTitle())) {
             getSupportActionBar().setTitle(userContentMain.getTitle());
         }
 
@@ -159,7 +158,7 @@ public class TxMainActivity extends AppCompatActivity {
         super.onDestroy();
         if(TxMainActivity.this.isFinishing()){
             // Cancelling request
-             TxNetworkManager.getInstance().getRequestQueue().cancelAll(TAG_VOLLY_REQUEST);
+             TxNetworkManager.getInstance().getRequestQueue().cancelAll(TAG_REQUEST);
         }
 
     }

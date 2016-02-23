@@ -11,7 +11,7 @@ import com.telstra.imagelist.network.util.CustomImageCache;
 
 public class TxNetworkManager extends Application {
 
-    public static final String TAG = TxNetworkManager.class
+    private static final String TAG = TxNetworkManager.class
             .getSimpleName();
 
     private RequestQueue mRequestQueue;
@@ -30,7 +30,7 @@ public class TxNetworkManager extends Application {
         return mInstance;
     }
 
-    // Maintaining Request Queue for Volly.
+    // Maintaining Request Queue for Network call.
 
     public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
@@ -56,9 +56,4 @@ public class TxNetworkManager extends Application {
         getRequestQueue().add(req);
     }
 
-    public void cancelPendingRequests(Object tag) {
-        if (mRequestQueue != null) {
-            mRequestQueue.cancelAll(tag);
-        }
-    }
 }

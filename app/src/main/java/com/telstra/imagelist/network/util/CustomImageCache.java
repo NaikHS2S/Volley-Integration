@@ -1,9 +1,5 @@
 package com.telstra.imagelist.network.util;
 
-/**
- * Created by computer on 2/18/2016.
- */
-
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
 
@@ -16,16 +12,14 @@ public class CustomImageCache extends LruCache<String, Bitmap> implements
 
     private static int getDefaultLruCacheSize() {
         final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / BUFFER_SIZE);
-        final int cacheSize = maxMemory / 8;
-
-        return cacheSize;
+        return  maxMemory / 8;
     }
 
     public CustomImageCache() {
         this(getDefaultLruCacheSize());
     }
 
-    public CustomImageCache(int sizeInKiloBytes) {
+    private CustomImageCache(int sizeInKiloBytes) {
         super(sizeInKiloBytes);
     }
 

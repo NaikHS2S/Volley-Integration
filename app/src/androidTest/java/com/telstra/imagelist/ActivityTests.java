@@ -1,9 +1,5 @@
 package com.telstra.imagelist;
 
-/**
- * Created by computer on 2/22/2016.
- */
-
 import android.app.Instrumentation;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.ListView;
@@ -12,7 +8,7 @@ import com.telstra.imagelist.ui.activity.TxMainActivity;
 
 public class ActivityTests extends
         ActivityInstrumentationTestCase2<TxMainActivity> {
-    private TxMainActivity mTxMainActivity;
+    public TxMainActivity mTxMainActivity;
     private Instrumentation mInstrumentation;
     ListView list;
 

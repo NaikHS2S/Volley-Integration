@@ -32,7 +32,8 @@
             <com.android.volley.toolbox.NetworkImageView
                 android:id="@+id/networkImage"
                 android:layout_width="0dp"
-                android:layout_height="320px"
+                android:layout_height="140dp"
+                android:scaleType="fitEnd"
                 android:layout_gravity="right|bottom"
                 android:layout_marginLeft="4dp"
                 android:layout_weight="0.7"

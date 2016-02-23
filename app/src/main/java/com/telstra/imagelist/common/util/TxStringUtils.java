@@ -1,8 +1,5 @@
 package com.telstra.imagelist.common.util;
 
-/**
- * Created by computer on 2/18/2016.
- */
 public class TxStringUtils {
 
   // Used to validate a String an empty or null
