@@ -1,15 +1,15 @@
 package com.telstra.imagelist.network;
 
-import android.app.Application;
 import android.text.TextUtils;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.telstra.imagelist.TxApplication;
 import com.telstra.imagelist.network.util.CustomImageCache;
 
-public class TxNetworkManager extends Application {
+public class TxNetworkManager extends TxApplication {
 
     private static final String TAG = TxNetworkManager.class
             .getSimpleName();
