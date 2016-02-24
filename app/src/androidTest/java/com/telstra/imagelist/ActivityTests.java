@@ -8,9 +8,8 @@ import com.telstra.imagelist.ui.activity.TxMainActivity;
 
 public class ActivityTests extends
         ActivityInstrumentationTestCase2<TxMainActivity> {
-    public TxMainActivity mTxMainActivity;
     private Instrumentation mInstrumentation;
-    ListView list;
+    private ListView list;
 
     public ActivityTests() {
         super(TxMainActivity.class);
@@ -21,7 +20,7 @@ public class ActivityTests extends
         super.setUp();
         setActivityInitialTouchMode(true);
         mInstrumentation = getInstrumentation();
-        mTxMainActivity = getActivity();
+        TxMainActivity mTxMainActivity = getActivity();
         list = (ListView) mTxMainActivity.findViewById(R.id.list);
     }
 

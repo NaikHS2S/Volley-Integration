@@ -1,0 +1,22 @@
+<resources>
+
+    <style name="MainLayoutStartEndStyle">
+        <item name="android:paddingStart">@dimen/eight_dp_margin</item>
+        <item name="android:paddingEnd">@dimen/fab_margin</item>
+    </style>
+
+    <style name="DescriptionGravityStyle">
+        <item name="android:layout_gravity">start</item>
+    </style>
+
+    <style name="NetworkImageLeftToRightStyle">
+        <item name="android:layout_gravity">end|bottom</item>
+        <item name="android:layout_marginStart">@dimen/four_dp_margin</item>
+    </style>
+
+    <style name="FloatingActionStyle">
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_marginEnd">@dimen/twelve_dp_margin</item>
+    </style>
+
+</resources>

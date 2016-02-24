@@ -7,7 +7,9 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="CustomElevationStyle">
+    <style name="FloatingActionStyle">
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_marginEnd">@dimen/twelve_dp_margin</item>
         <item name="android:elevation">2dp</item>
     </style>
 

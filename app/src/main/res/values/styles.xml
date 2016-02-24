@@ -23,7 +23,23 @@
         <item name="android:textColorPrimary">@android:color/white</item>
     </style>
 
-    <!--  Overridden in value-21-->
-    <style name="CustomElevationStyle"></style>
+    <style name="MainLayoutStartEndStyle">
+        <item name="android:paddingLeft">@dimen/eight_dp_margin</item>
+        <item name="android:paddingRight">@dimen/fab_margin</item>
+    </style>
+
+    <style name="DescriptionGravityStyle">
+        <item name="android:layout_gravity">left</item>
+    </style>
+
+    <style name="NetworkImageLeftToRightStyle">
+        <item name="android:layout_gravity">right|bottom</item>
+        <item name="android:layout_marginLeft">@dimen/four_dp_margin</item>
+    </style>
+
+    <style name="FloatingActionStyle">
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">@dimen/twelve_dp_margin</item>
+    </style>
 
 </resources>

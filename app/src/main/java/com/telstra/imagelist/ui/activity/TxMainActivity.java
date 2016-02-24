@@ -34,7 +34,7 @@ public class TxMainActivity extends AppCompatActivity {
     private static final String USER_CONTENT_URL = "https://dl.dropboxusercontent.com/u/746330/facts.json";
     private final String TAG = TxMainActivity.class.getSimpleName();
     private final String TAG_REQUEST = "my_own_tax";
-    private final List<SingleUserInfo> userList = new ArrayList<SingleUserInfo>();
+    private final List<SingleUserInfo> userList = new ArrayList<>();
 
     private SwipeRefreshLayout mSwipeRefreshLayout = null;
     private ProgressBar progressBar;

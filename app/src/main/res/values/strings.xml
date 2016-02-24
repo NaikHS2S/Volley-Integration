@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Telstra</string>
-    <string name="refresh_text_snackbar">Refreshing data...</string>
+    <string name="refresh_text_snackbar">Refreshing data</string>
     <string name="action_text">Action</string>
 </resources>
