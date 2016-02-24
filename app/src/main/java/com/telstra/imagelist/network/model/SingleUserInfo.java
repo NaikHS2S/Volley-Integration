@@ -2,6 +2,14 @@ package com.telstra.imagelist.network.model;
 
 public class SingleUserInfo
 {
+    // Added to initialize SingleUserInfo while running test cases .
+
+    public SingleUserInfo(String title, String description, String imageHref) {
+        this.title = title;
+        this.description = description;
+        this.imageHref = imageHref;
+    }
+
     private String title;
 
     private String description;
