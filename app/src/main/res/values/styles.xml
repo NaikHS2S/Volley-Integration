@@ -22,6 +22,7 @@
         <item name="colorPrimaryDark">@color/blue</item>
     </style>
 
-
+    <!--  Overridden in value-21-->
+    <style name="CustomElevationStyle"></style>
 
 </resources>

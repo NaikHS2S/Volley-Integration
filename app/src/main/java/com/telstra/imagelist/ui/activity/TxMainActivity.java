@@ -34,10 +34,10 @@ public class TxMainActivity extends AppCompatActivity {
     private static final String USER_CONTENT_URL = "https://dl.dropboxusercontent.com/u/746330/facts.json";
     private final String TAG = TxMainActivity.class.getSimpleName();
     private final String TAG_REQUEST = "my_own_tax";
-    private SwipeRefreshLayout mSwipeRefreshLayout = null;
-
-    private ProgressBar progressBar;
     private final List<SingleUserInfo> userList = new ArrayList<SingleUserInfo>();
+
+    private SwipeRefreshLayout mSwipeRefreshLayout = null;
+    private ProgressBar progressBar;
     private ListView listView;
     private TxListAdapter adapter;
 
@@ -96,8 +96,8 @@ public class TxMainActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);}
 
 
-        Snackbar.make(listView, "Refreshing data", Snackbar.LENGTH_SHORT)
-                .setAction("Action", null).show();
+        Snackbar.make(listView, getString(R.string.refresh_text_snackbar), Snackbar.LENGTH_SHORT)
+                .setAction(getString(R.string.action_text), null).show();
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 USER_CONTENT_URL, null,
