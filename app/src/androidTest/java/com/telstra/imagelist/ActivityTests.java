@@ -49,7 +49,11 @@ public class ActivityTests extends ActivityInstrumentationTestCase2<TxMainActivi
                 }
         );
 
-        getInstrumentation().waitForIdleSync();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
