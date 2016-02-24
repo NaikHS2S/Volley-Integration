@@ -30,7 +30,7 @@
 
             <com.android.volley.toolbox.NetworkImageView
                 android:id="@+id/networkImage"
-                style="@style/NetworkImageLeftToRightStyle"
+                style="@style/NetworkImageRightToLeftStyle"
                 android:layout_width="@dimen/zero_dp_margin"
                 android:layout_height="@dimen/image_size"
                 android:scaleType="fitEnd"

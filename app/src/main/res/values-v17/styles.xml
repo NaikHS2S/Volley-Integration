@@ -9,7 +9,7 @@
         <item name="android:layout_gravity">start</item>
     </style>
 
-    <style name="NetworkImageLeftToRightStyle">
+    <style name="NetworkImageRightToLeftStyle">
         <item name="android:layout_gravity">end|bottom</item>
         <item name="android:layout_marginStart">@dimen/four_dp_margin</item>
     </style>
