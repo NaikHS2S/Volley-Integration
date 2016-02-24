@@ -142,19 +142,19 @@ public class TxMainActivity extends AppCompatActivity {
     }
 
     private void updateTitleAndListData(UserContentMain userContentMain) {
-        TxStringUtils txStringUtil = new TxStringUtils();
-        if (getSupportActionBar() != null && txStringUtil.isStringDataAValid(userContentMain.getTitle())) {
+
+        if (getSupportActionBar() != null && TxStringUtils.isStringDataAValid(userContentMain.getTitle())) {
             getSupportActionBar().setTitle(userContentMain.getTitle());
         }
 
-         validateLIst(userContentMain.getRows(),txStringUtil);
+        validateLIst(userContentMain.getRows());
         adapter.notifyDataSetChanged();
     }
 
-    private void validateLIst(ArrayList<SingleUserInfo> userList, TxStringUtils txStringUtils) {
+    private void validateLIst(ArrayList<SingleUserInfo> userList) {
         for (Iterator<SingleUserInfo> it = userList.iterator(); it.hasNext(); ) {
             SingleUserInfo singleUserInfo = it.next();
-            if (!txStringUtils.isStringDataAValid(singleUserInfo.getTitle()) && !txStringUtils.isStringDataAValid(singleUserInfo.getDescription())) {
+            if (!TxStringUtils.isStringDataAValid(singleUserInfo.getTitle()) && !TxStringUtils.isStringDataAValid(singleUserInfo.getDescription())) {
                 it.remove();
             }
         }

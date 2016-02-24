@@ -23,7 +23,6 @@ public class TxListAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private final List<SingleUserInfo> userInfo;
     private ImageLoader imageLoader = TxNetworkManager.getInstance().getImageLoader();
-    private final TxStringUtils txStringUtils = new TxStringUtils();
 
     public TxListAdapter(Activity activity, List<SingleUserInfo> userInfo) {
         this.activity = activity;
@@ -108,7 +107,7 @@ public class TxListAdapter extends BaseAdapter {
     }
 
     private boolean isStringDataAValid(String stringValue) {
-        return txStringUtils.isStringDataAValid(stringValue);
+        return TxStringUtils.isStringDataAValid(stringValue);
     }
 
     private class ViewHolder {
