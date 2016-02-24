@@ -93,11 +93,13 @@ public class TxMainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Does network call with JsonObjectRequest
+     */
     private void makeJsonObjReq() {
 
         if (!mSwipeRefreshLayout.isRefreshing()) {
         progressBar.setVisibility(View.VISIBLE);}
-
 
         Snackbar.make(listView, getString(R.string.refresh_text_snackbar), Snackbar.LENGTH_SHORT)
                 .setAction(getString(R.string.action_text), null).show();
@@ -119,19 +121,13 @@ public class TxMainActivity extends AppCompatActivity {
                             progressBar.setVisibility(View.GONE);
                             updateTitleAndListData(userContentMain);
                         }
-                        if (mSwipeRefreshLayout.isRefreshing()) {
-                            mSwipeRefreshLayout.setRefreshing(false);
-                        }
-                        progressBar.setVisibility(View.GONE);
+                        updateViews();
                     }
                 }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                progressBar.setVisibility(View.GONE);
-                if (mSwipeRefreshLayout.isRefreshing()) {
-                    mSwipeRefreshLayout.setRefreshing(false);
-                }
+                updateViews();
 
             }
         });
@@ -141,7 +137,13 @@ public class TxMainActivity extends AppCompatActivity {
         // Adding request to request queue
         TxNetworkManager.getInstance().addToRequestQueue(jsonObjReq,
                 TAG_REQUEST);
+    }
 
+    private void updateViews() {
+        progressBar.setVisibility(View.GONE);
+        if (mSwipeRefreshLayout.isRefreshing()) {
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     private void updateTitleAndListData(UserContentMain userContentMain) {
@@ -154,6 +156,9 @@ public class TxMainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * Validates list data and removes list item, if it contains object with both title and description has invalid data.
+     */
     private void validateLIst(ArrayList<SingleUserInfo> userList) {
         for (Iterator<SingleUserInfo> it = userList.iterator(); it.hasNext(); ) {
             SingleUserInfo singleUserInfo = it.next();

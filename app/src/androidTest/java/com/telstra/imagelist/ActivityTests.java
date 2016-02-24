@@ -1,6 +1,7 @@
 package com.telstra.imagelist;
 
 import android.app.Instrumentation;
+import android.support.annotation.NonNull;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.ListView;
 
@@ -37,23 +38,23 @@ public class ActivityTests extends ActivityInstrumentationTestCase2<TxMainActivi
         int expectedCount = 10;
         int actualCount = list.getAdapter().getCount();
         assertNotSame(expectedCount, actualCount);
-        final ArrayList<SingleUserInfo> dummyUsers = new ArrayList<SingleUserInfo>();
-        dummyUsers.add(new SingleUserInfo("Title", "Description", "null"));
 
         getActivity().runOnUiThread(
                 new Runnable() {
                     @Override
                     public void run() {
-                        list.setAdapter(new TxListAdapter(getActivity(), dummyUsers));
+                        list.setAdapter(new TxListAdapter(getActivity(), getUsersInformation()));
                     }
                 }
         );
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(4000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        assertEquals(3, list.getAdapter().getCount());
 
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
@@ -69,6 +70,36 @@ public class ActivityTests extends ActivityInstrumentationTestCase2<TxMainActivi
 
         // Remove the Activity Monitor
         getInstrumentation().removeMonitor(mTxActivityMonitor);
+    }
+
+    /**
+     *
+     * @return ArrayList<SingleUserInfo> using dummy data
+     */
+
+    @NonNull
+    private ArrayList<SingleUserInfo> getUsersInformation() {
+
+        ArrayList<SingleUserInfo> dummyUsers = new ArrayList<>();
+        SingleUserInfo singleUserInfo = new SingleUserInfo();
+        singleUserInfo.setTitle("Test Title");
+        singleUserInfo.setDescription("Test Description");
+        singleUserInfo.setImageHref(null);
+        dummyUsers.add(singleUserInfo);
+
+        SingleUserInfo singleUserInfoSecond = new SingleUserInfo();
+        singleUserInfoSecond.setTitle(null);
+        singleUserInfoSecond.setDescription("Test Description Second");
+        singleUserInfoSecond.setImageHref("http://s3.amazonaws.com/37assets/svn/765-default-avatar.png");
+        dummyUsers.add(singleUserInfoSecond);
+
+        SingleUserInfo singleUserInfoThird = new SingleUserInfo();
+        singleUserInfoThird.setTitle("Test Title Third");
+        singleUserInfoThird.setDescription(" ");
+        singleUserInfoThird.setImageHref("http://s3.amazonaws.com/37assets/svn/765-default-avatar.png");
+        dummyUsers.add(singleUserInfoThird);
+
+        return dummyUsers;
     }
 
 }

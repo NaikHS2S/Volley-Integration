@@ -26,7 +26,6 @@ public class TxNetworkManager extends TxApplication {
     }
 
     public static synchronized TxNetworkManager getInstance() {
-
         return mInstance;
     }
 
@@ -36,10 +35,10 @@ public class TxNetworkManager extends TxApplication {
         if (mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(getApplicationContext());
         }
-
         return mRequestQueue;
     }
 
+    // Initialized ImageLoader using CustomImageCache
     public ImageLoader getImageLoader() {
         getRequestQueue();
         if (mImageLoader == null) {
@@ -55,5 +54,4 @@ public class TxNetworkManager extends TxApplication {
         req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
         getRequestQueue().add(req);
     }
-
 }

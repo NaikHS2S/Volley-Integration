@@ -94,8 +94,12 @@ public class TxListAdapter extends BaseAdapter {
             holder.thumbNailNetworkImage.setVisibility(View.GONE);
         }
 
+        holder.title.setVisibility(View.VISIBLE);
+
         if (isStringDataAValid(String.valueOf(userInformation.getTitle()))) {
             holder.title.setText(userInformation.getTitle());
+        } else {
+            holder.title.setVisibility(View.GONE);
         }
 
         if (isStringDataAValid(String.valueOf(userInformation.getDescription()))) {
