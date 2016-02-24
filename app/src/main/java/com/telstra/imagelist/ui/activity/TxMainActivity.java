@@ -28,7 +28,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
+/**
+ * We load json data from https://dl.dropboxusercontent.com/u/746330/facts.json
+ * add into TxListAdapter to display as list of SingleUserInfo.
+ */
 public class TxMainActivity extends AppCompatActivity {
 
     private static final String USER_CONTENT_URL = "https://dl.dropboxusercontent.com/u/746330/facts.json";
